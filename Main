@@ -1,0 +1,53 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int contadorC = 20;
+        int bomba = 5;
+
+        Random rn = new Random();
+        Scanner sc = new Scanner(System.in);
+
+
+        String [][] campoMinado = new String[10][10];
+
+        for (int i = 0; i < campoMinado.length; i++) {
+            for (int j = 0; j < campoMinado[i].length; j++) {
+                campoMinado [i][j] = " _ ";
+            }
+        }
+        while (contadorC > 0) {
+            int NA1 = rn.nextInt(10);
+            int NA2 = rn.nextInt(10);
+            campoMinado [NA1][NA2] = " C ";
+            contadorC--;
+        }
+        while (bomba > 0) {
+            int NA1 = rn.nextInt(10);
+            int NA2 = rn.nextInt(10);
+            campoMinado [NA1][NA2] = " B ";
+            bomba--;
+        }
+        for (int i = 0; i < campoMinado.length; i++) {
+            for (int j = 0; j < campoMinado[i].length; j++) {
+                System.out.print(campoMinado[i][j]);
+            }
+            System.out.println();
+        }
+
+        System.out.println("Qual coodernada X você acha que está salvo ?(respostas de 0 a 9)");
+        int respX = sc.nextInt();
+        System.out.println("Qual coodernada Y você acha que está salvo ?(respostas de 0 a 9)");
+        int respY = sc.nextInt();
+
+        if (campoMinado[respX][respY].equals(" B ")) {
+           System.out.println("Caiu na bomba!");
+        } else if (campoMinado[respX][respY].equals(" C ")) {
+            System.out.println("Saiu ileso da carga!");
+        } else {
+            System.out.println("Saiu ileso!");
+        }
+
+    }
+}
